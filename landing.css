@@ -182,9 +182,9 @@ body.landing-page::before {
   flex-wrap: wrap;
 }
 .landing__logos img {
-  height: 24px;
+  height: 38px;
   width: auto;
-  border-radius: 6px;
+  border-radius: 21px;
   opacity: 0.85;
   transition: opacity 160ms ease, transform 160ms ease;
 }
