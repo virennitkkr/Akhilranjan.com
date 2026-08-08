@@ -1,0 +1,230 @@
+/* Shared shell for content pages (Résumé, Reporting, Writing, Learning,
+   Speaking, Travelling). Reuses the --landing-* variables and fonts
+   declared in landing.css :root — link landing.css before this file. */
+
+body.content-page {
+  background: var(--landing-bg);
+  color: var(--landing-ink);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+.cp-header {
+  border-bottom: 1px solid rgba(28, 23, 18, 0.1);
+  padding: 1.5rem 2rem;
+}
+.cp-header__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cp-brand {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--landing-ink);
+  text-decoration: none;
+}
+.cp-nav {
+  display: flex;
+  gap: 0.5rem 1.1rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cp-nav a {
+  position: relative;
+  color: var(--landing-ink);
+  text-decoration: none;
+  padding: 0.3rem 0.1rem;
+}
+.cp-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0.1rem;
+  right: 0.1rem;
+  bottom: 0.1rem;
+  height: 1.5px;
+  background: var(--landing-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+.cp-nav a:hover::after,
+.cp-nav a:focus-visible::after { transform: scaleX(1); }
+.cp-nav a[aria-current="page"] { color: var(--landing-accent); }
+.cp-nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+.cp-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 1.5rem;
+}
+.cp-eyebrow {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--landing-accent);
+  margin: 0 0 0.8rem;
+}
+.cp-hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+.cp-intro {
+  color: var(--landing-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 65ch;
+  margin: 0;
+}
+
+.cp-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 5rem;
+}
+
+.cp-section { margin-bottom: 3.5rem; }
+.cp-section:last-child { margin-bottom: 0; }
+.cp-section h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  margin: 0 0 0.6rem;
+}
+.cp-section__note {
+  color: var(--landing-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 65ch;
+  margin: 0 0 1.6rem;
+}
+
+.cp-grid { display: grid; gap: 1.4rem; }
+.cp-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.cp-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+.cp-card {
+  background: var(--landing-card);
+  border: 1px solid var(--landing-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.cp-card__tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--landing-accent);
+  background: var(--landing-accent-soft);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+.cp-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  margin: 0;
+}
+.cp-card p {
+  color: var(--landing-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+.cp-card a {
+  color: var(--landing-ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.cp-card a:hover { color: var(--landing-accent); }
+.cp-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: -1.5rem -1.5rem 0.3rem;
+  width: calc(100% + 3rem);
+}
+
+/* empty / not-yet-filled-in placeholder — same visual language across every page */
+.cp-empty-card {
+  border: 1.5px dashed var(--landing-border-strong);
+  border-radius: 20px;
+  padding: 1.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--landing-border-strong);
+}
+.cp-empty-card strong {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: normal;
+  font-size: 1.05rem;
+  color: var(--landing-muted);
+}
+.cp-empty-card span { font-style: italic; font-size: 0.9rem; line-height: 1.55; }
+
+/* timeline layout, used by the résumé page */
+.cp-timeline { display: flex; flex-direction: column; }
+.cp-timeline-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1.5rem;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid var(--landing-border);
+}
+.cp-timeline-item:first-child { padding-top: 0; }
+.cp-timeline-item:last-child { border-bottom: none; }
+.cp-timeline-item__date {
+  color: var(--landing-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding-top: 0.15rem;
+}
+.cp-timeline-item h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+}
+.cp-timeline-item__org {
+  display: block;
+  color: var(--landing-accent);
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+}
+.cp-timeline-item p {
+  color: var(--landing-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0;
+}
+.cp-timeline-item.cp-empty-card {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  border: none;
+  padding: 0.6rem 0;
+}
+.cp-timeline-item.cp-empty-card > div { border: 1.5px dashed var(--landing-border-strong); border-radius: 16px; padding: 1.1rem 1.3rem; }
+
+@media (max-width: 820px) {
+  .cp-header__inner, .cp-hero, .cp-main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .cp-grid--2, .cp-grid--3 { grid-template-columns: 1fr; }
+  .cp-timeline-item, .cp-timeline-item.cp-empty-card { grid-template-columns: 1fr; gap: 0.4rem; }
+}

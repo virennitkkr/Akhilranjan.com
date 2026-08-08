@@ -1,0 +1,10 @@
+{
+  "name": "Akhil Ranjan | Investigative Journalist",
+  "short_name": "Akhil Ranjan",
+  "description": "An award-winning investigative journalism platform for deep reporting, research, and public accountability.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E9E1D2",
+  "theme_color": "#E9E1D2",
+  "icons": []
+}

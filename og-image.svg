@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#070707" />
+  <rect x="60" y="60" width="1080" height="510" rx="28" fill="#111111" stroke="#D8B45A" stroke-width="3" />
+  <circle cx="860" cy="240" r="160" fill="#5A8DEE" fill-opacity="0.2" />
+  <path d="M300 430c50-140 125-220 235-220 120 0 190 84 230 220" stroke="#D8B45A" stroke-width="10" fill="none" />
+  <text x="120" y="260" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="44" letter-spacing="4">AKHIL RANJAN</text>
+  <text x="120" y="330" fill="#D8B45A" font-family="Inter, Arial, sans-serif" font-size="32">INVESTIGATIVE JOURNALIST</text>
+  <text x="120" y="392" fill="#A0A0A0" font-family="Inter, Arial, sans-serif" font-size="24">Truth. Evidence. Public Accountability.</text>
+</svg>
