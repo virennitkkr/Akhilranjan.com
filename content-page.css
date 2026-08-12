@@ -153,6 +153,8 @@ body.content-page {
   text-decoration: none;
 }
 .cp-card a:hover { color: var(--landing-accent); }
+.cp-card__links { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; }
+.cp-card__links a { font-weight: 600; font-size: 0.9rem; }
 .cp-card img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -160,6 +162,20 @@ body.content-page {
   border-radius: 12px;
   margin: -1.5rem -1.5rem 0.3rem;
   width: calc(100% + 3rem);
+}
+.cp-card--book { flex-direction: row; align-items: flex-start; gap: 1.3rem; }
+.cp-card--book img {
+  width: 130px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.cp-card--book .cp-card__body { display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+@media (max-width: 560px) {
+  .cp-card--book { flex-direction: column; }
+  .cp-card--book img { width: 130px; }
 }
 
 /* empty / not-yet-filled-in placeholder — same visual language across every page */
