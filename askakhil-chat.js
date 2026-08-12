@@ -29,11 +29,11 @@
   };
 
   var TABS = [
-    { key: 'start', icon: '🚀', label: 'Getting Started' },
-    { key: 'osint', icon: '🕵️', label: 'OSINT', category: 'OSINT' },
-    { key: 'investigations', icon: '📰', label: 'Investigations', category: 'Investigations' },
-    { key: 'book', icon: '📘', label: 'Book', category: 'Book' },
-    { key: 'contact', icon: '✉️', label: 'Contact', category: 'Contact' }
+    { key: 'start', label: 'Getting Started' },
+    { key: 'osint', label: 'OSINT', category: 'OSINT' },
+    { key: 'investigations', label: 'Investigations', category: 'Investigations' },
+    { key: 'book', label: 'Book', category: 'Book' },
+    { key: 'contact', label: 'Contact', category: 'Contact' }
   ];
 
 const ASKAKHIL_KB = [
@@ -1081,7 +1081,7 @@ const ASKAKHIL_KB = [
         '</div>' +
         '<nav class="askakhil__tabs" aria-label="Topics">' +
           TABS.map(function (t) {
-            return '<button class="askakhil__tab' + (t.key === TABS[0].key ? ' is-active' : '') + '" data-tab="' + t.key + '" type="button"><span aria-hidden="true">' + t.icon + '</span> ' + t.label + '</button>';
+            return '<button class="askakhil__tab' + (t.key === TABS[0].key ? ' is-active' : '') + '" data-tab="' + t.key + '" type="button">' + t.label + '</button>';
           }).join('') +
         '</nav>' +
         '<div class="askakhil__suggestions-grid"></div>' +
