@@ -5,12 +5,12 @@
   color-scheme: light;
   --landing-bg: #E9E1D2;
   --landing-ink: #1C1712;
-  --landing-muted: #5C554B;
+  --landing-muted: #4A4338;
   --landing-border: #C9BEA9;
   --landing-border-strong: #a89a80;
   --landing-accent: #B85C2C;
   --landing-accent-soft: rgba(184, 92, 44, 0.14);
-  --landing-card: rgba(255, 255, 255, 0.4);
+  --landing-card: rgba(255, 255, 255, 0.5);
 }
 
 * { box-sizing: border-box; }
@@ -43,22 +43,35 @@ body.landing-page::before {
   z-index: 0;
 }
 
+/* bold brand strip across the very top, for immediate visual presence */
+body.landing-page::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--landing-accent) 0%, #d98f5f 50%, var(--landing-accent) 100%);
+  z-index: 3;
+}
+
 .landing {
   position: relative;
   z-index: 1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 2.75rem 2rem 2rem;
+  padding: 1.4rem 2rem 1rem;
 }
 
 .landing__container {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1320px;
   margin: 0 auto;
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .landing__topbar {
@@ -67,8 +80,8 @@ body.landing-page::before {
   justify-content: space-between;
   gap: 1.5rem;
   flex-wrap: wrap;
-  padding-bottom: 1.5rem;
-  margin-bottom: clamp(2.5rem, 7vw, 5rem);
+  padding-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 1.4vw, 1rem);
   border-bottom: 1px solid rgba(28, 23, 18, 0.1);
 }
 
@@ -116,11 +129,12 @@ body.landing-page::before {
 .landing__nav span { color: var(--landing-border-strong); font-size: 0.7rem; }
 
 .landing__grid {
-  flex: 1;
+  flex: 0 0 auto;
   display: grid;
-  grid-template-columns: minmax(240px, 350px) 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
+  grid-template-columns: minmax(260px, 400px) 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  margin-top: clamp(0.75rem, 2.4vw, 1.9rem);
 }
 
 .landing__profile {
@@ -133,24 +147,25 @@ body.landing-page::before {
 
 .landing__photo {
   position: relative;
-  width: clamp(210px, 20vw, 300px);
+  width: clamp(240px, 26vw, 380px);
   aspect-ratio: 1 / 1;
+  padding: 5%;
 }
 .landing__photo::before {
   content: '';
   position: absolute;
-  inset: -14px;
+  inset: -20px;
   border-radius: 50%;
-  border: 1px dashed rgba(184, 92, 44, 0.3);
+  border: 1.5px dashed rgba(184, 92, 44, 0.4);
   animation: landing-spin 40s linear infinite;
 }
 .landing__photo::after {
   content: '';
   position: absolute;
-  inset: 6%;
+  inset: 4%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(184,92,44,0.35), transparent 70%);
-  filter: blur(28px);
+  background: radial-gradient(circle, rgba(184,92,44,0.45), transparent 70%);
+  filter: blur(32px);
   z-index: -1;
 }
 .landing__photo img {
@@ -158,6 +173,7 @@ body.landing-page::before {
   height: 100%;
   object-fit: contain;
   display: block;
+  border-radius: 50%;
   filter: drop-shadow(0 18px 30px rgba(28, 23, 18, 0.22));
 }
 
@@ -179,16 +195,26 @@ body.landing-page::before {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  flex-wrap: wrap;
 }
 .landing__logos img {
-  height: 38px;
+  height: 48px;
   width: auto;
-  border-radius: 21px;
-  opacity: 0.85;
-  transition: opacity 160ms ease, transform 160ms ease;
+  display: block;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(28, 23, 18, 0.1);
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
-.landing__logos img:hover { opacity: 1; transform: translateY(-2px); }
+/* AFP and Twitter marks are square — render them as circular badges */
+.landing__logos img:nth-child(2),
+.landing__logos img:nth-child(3) {
+  width: 48px;
+  border-radius: 50%;
+}
+.landing__logos img:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(28, 23, 18, 0.18);
+}
 
 .landing__eyebrow {
   display: inline-flex;
@@ -217,18 +243,18 @@ body.landing-page::before {
   font-weight: 700;
   /* sized off the column's own width (container query units), not the viewport —
      so it always fits on one line whether the layout is two-column or stacked */
-  font-size: clamp(0.78rem, 4.1cqw, 3.35rem);
-  line-height: 1.15;
+  font-size: clamp(0.85rem, 4.2cqw, 3.6rem);
+  line-height: 1.1;
   margin: 0 0 1.5rem;
   white-space: nowrap;
   letter-spacing: -0.01em;
 }
 
 .landing__bio {
-  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-size: clamp(1.02rem, 1.3vw, 1.2rem);
   line-height: 1.7;
   color: var(--landing-muted);
-  max-width: 48ch;
+  max-width: 58ch;
   margin: 0 0 1.1rem;
 }
 
@@ -252,21 +278,21 @@ body.landing-page::before {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: var(--landing-ink);
-  color: var(--landing-bg);
+  background: var(--landing-accent);
+  color: #fff;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.92rem;
-  padding: 0.85rem 1.4rem;
+  font-size: 0.96rem;
+  padding: 0.95rem 1.6rem;
   border-radius: 999px;
   white-space: nowrap;
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-  box-shadow: 0 10px 24px rgba(28, 23, 18, 0.18);
+  box-shadow: 0 12px 28px rgba(184, 92, 44, 0.32);
 }
 .landing__cta-btn:hover {
   transform: translateY(-2px);
-  background: var(--landing-accent);
-  box-shadow: 0 14px 30px rgba(184, 92, 44, 0.3);
+  background: var(--landing-ink);
+  box-shadow: 0 14px 30px rgba(28, 23, 18, 0.3);
 }
 .landing__cta-btn svg { transition: transform 160ms ease; }
 .landing__cta-btn:hover svg { transform: translateX(3px); }
@@ -340,7 +366,7 @@ body.landing-page::before {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  max-width: 1180px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 2rem 2rem 3rem;
   border-top: 1px solid rgba(28, 23, 18, 0.1);
@@ -353,6 +379,45 @@ body.landing-page::before {
   .landing__footer { padding: 1.5rem 1.25rem 2.5rem; justify-content: center; text-align: center; }
 }
 
+/* ---------- About (scroll section 1.5) ---------- */
+.about {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 2rem 5rem;
+  border-top: 1px solid rgba(28, 23, 18, 0.1);
+}
+.about__container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+.about__eyebrow {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--landing-accent);
+  margin: 0 0 0.6rem;
+}
+.about h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  margin: 0 0 1.6rem;
+  max-width: 32ch;
+}
+.about__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 72ch;
+}
+.about__body p {
+  color: var(--landing-muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
 /* ---------- Selected Work (scroll section 2) ---------- */
 .selected-work {
   position: relative;
@@ -360,7 +425,7 @@ body.landing-page::before {
   padding: 1rem 2rem 5rem;
 }
 .selected-work__container {
-  max-width: 1180px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 .selected-work__eyebrow {
@@ -373,8 +438,8 @@ body.landing-page::before {
 }
 .selected-work h2 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-  margin: 0 0 0.7rem;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  margin: 0 0 2.2rem;
   max-width: 30ch;
 }
 .selected-work__note {
@@ -391,16 +456,17 @@ body.landing-page::before {
 .selected-work__card {
   background: var(--landing-card);
   border: 1px solid var(--landing-border);
-  border-radius: 20px;
-  padding: 1.6rem;
+  border-top: 3px solid var(--landing-accent);
+  border-radius: 14px;
+  padding: 1.8rem 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 .selected-work__card:not(.selected-work__card--empty):hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(28, 23, 18, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 36px rgba(28, 23, 18, 0.14);
 }
 .selected-work__tag {
   align-self: flex-start;
@@ -415,8 +481,8 @@ body.landing-page::before {
 }
 .selected-work__card h3 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.2rem;
-  line-height: 1.35;
+  font-size: 1.28rem;
+  line-height: 1.32;
   margin: 0;
 }
 .selected-work__card p {
@@ -427,12 +493,14 @@ body.landing-page::before {
   flex: 1;
 }
 .selected-work__card a {
+  display: inline-block;
   color: var(--landing-ink);
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
+  transition: color 160ms ease, transform 160ms ease;
 }
-.selected-work__card a:hover { color: var(--landing-accent); }
+.selected-work__card a:hover { color: var(--landing-accent); transform: translateX(3px); }
 .selected-work__card--empty {
   border-style: dashed;
   border-color: var(--landing-border-strong);
@@ -456,7 +524,7 @@ body.landing-page::before {
   border-top: 1px solid rgba(28, 23, 18, 0.1);
 }
 .accomplishments__container {
-  max-width: 1180px;
+  max-width: 1320px;
   margin: 0 auto;
   padding-top: 4rem;
 }
@@ -470,7 +538,7 @@ body.landing-page::before {
 }
 .accomplishments h2 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   margin: 0 0 2.5rem;
   max-width: 32ch;
 }
@@ -481,22 +549,31 @@ body.landing-page::before {
 }
 .accomplishments__grid figure {
   margin: 0;
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--landing-card);
   border: 1px solid var(--landing-border);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.accomplishments__grid figure:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 36px rgba(28, 23, 18, 0.14);
 }
 .accomplishments__grid img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  filter: grayscale(0.15);
+  transition: filter 220ms ease;
 }
+.accomplishments__grid figure:hover img { filter: grayscale(0); }
 .accomplishments__grid figcaption {
   padding: 0.9rem 1.1rem;
   font-size: 0.85rem;
   color: var(--landing-muted);
   line-height: 1.5;
+  border-top: 2px solid var(--landing-accent-soft);
 }
 
 @media (max-width: 900px) {
@@ -519,5 +596,5 @@ body.landing-page::before {
   .landing__topbar { justify-content: center; text-align: center; }
   .landing__eyebrow { margin-left: auto; margin-right: auto; }
   .landing__footer { justify-content: center; text-align: center; }
-  .selected-work, .accomplishments { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .about, .selected-work, .accomplishments { padding-left: 1.25rem; padding-right: 1.25rem; }
 }
