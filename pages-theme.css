@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 body.light-mode {
-  --bg: #E9E1D2;
+  --bg: #FFFFFF;
   --panel: rgba(255, 255, 255, 0.55);
   --gold: #B85C2C;
   --blue: #8a4a24;
